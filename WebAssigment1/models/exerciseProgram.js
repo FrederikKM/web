@@ -1,6 +1,6 @@
 let mongoose =require('mongoose');
 
-//Program Schema
+//Exercise Schema
 let exerciseSchema = mongoose.Schema({
     name: {
         type: String,
@@ -21,9 +21,12 @@ let exerciseSchema = mongoose.Schema({
 
 });
 
-let Exercise = module.exports= mongoose.model('Exercise', exerciseSchema);
 
-let ProgramSchema = mongoose.Schema({
+let ExerciseProgramSchema = mongoose.Schema({
+    creator: {
+        type: String,
+        required: true
+    },  
     name:{
         type: String,
         required: true
@@ -31,4 +34,6 @@ let ProgramSchema = mongoose.Schema({
     exercises:{type: [exerciseSchema]}
 });
 
-let Program = module.exports= mongoose.model('Program', ProgramSchema);
+let program = mongoose.model('ExerciseProgram', ExerciseProgramSchema);
+let exercise = mongoose.model('Exercise', exerciseSchema);
+module.exports = { ExerciseProgram: program, Exercise : exercise }

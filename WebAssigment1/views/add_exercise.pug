@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1 #{title}
-    form(method='POST', action='/programs/add')
+    form(method='POST', action='/programs/add/exercise')
         #form-group
             label Exercise:
             input.form-control(name='Exercise', type='text' placeholder='Exercise name')
@@ -15,6 +15,6 @@ block content
         #form-group
             label Reps:
             input.form-control(name='Reps/Time', type='text' placeholder='Enter time or reps')
-        input.btn.btn-primary(type='submit', value='Submit')
+        input.btn.btn-primary(type='submit', value='Submit', style='margin-top: 10px')
 
             

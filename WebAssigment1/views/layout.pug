@@ -1,32 +1,38 @@
 doctype html
 html
     head
-        title Knowledgebase
+        title Workout Programs
         link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
 
     body
         nav.navbar.navbar-expand-md.navbar-dark.bg-dark
             a.navbar-brand(href='#') Work out Programs!
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
-                span.navbar-toggler-icon
+                span.sr-only Toggle Navigation
             #navbarsExampleDefault.collapse.navbar-collapse
                 ul.navbar-nav.mr-auto
-                    li.nav-item
-                        a.nav-link(href='/')
-                            |Home 
-                            span.sr-only (current)
-                    li.nav-item
-                        a.nav-link(href='/programs/add') Add work out program
-                         li.nav-item
-                        a.nav-link(href='/users/register') Register User
-                        li.nav-item
-                        a.nav-link(href='/users/login') Login
-                
+                    if user
+                        li.nav-item.dropdown
+                            a#dropdown01.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Add
+                            .dropdown-menu(aria-labelledby='dropdown1')
+                                a.dropdown-item(href='/programs/add/program') Program
+                                a.dropdown-item(href='/programs/add/exercise') Exercise
+                        li
+                            a(href='/', style='margin-left: 10px') | My Programs
+                ul.nav.navbar-nav.navbar-right
+                    if user
+                        li 
+                            a(href='/users/logout', style='margin-left: 10px') Logout
+                    else
+                        li
+                            a(href='/users/register') Register
+                        li
+                            a(href='/users/login', style='margin-left: 10px') Login
         .container
             block content
             br
             hr
             footer
-                p Copyright &copy; 2017  
+                p Copyright &copy; 2019 
         script(src='/bower_components/jquery/dist/jquery.js')
         script(src='/bower_components/bootstrap/dist/js/bootstrap.js')

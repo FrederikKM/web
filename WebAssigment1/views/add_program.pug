@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(method='POST', action='/programs/add/program')
+        #form-group
+            label Exercise:
+            input.form-control(name='program_field', type='text' placeholder='Program Name', required = '')
+        
+        input.btn.btn-primary(type='submit', value='Submit', style='margin-top: 10px')
+
+            

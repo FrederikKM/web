@@ -32,15 +32,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
+var flash = require('connect-flash');
+
+app.use(flash());
+
+
 app.use(require('connect-flash')());
 
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
-
-//Bring in models
-let Exercise = require('./models/exercise');
 
 //Load view engine
 app.set('views',path.join(__dirname,'views'));
@@ -60,23 +62,18 @@ app.get('*', function(req, res, next){
   next();
 });
 
-// Home route
+   // Home route
 app.get('/', function(req, res){
     res.render('index',{
         title:"Work out programs",
     });
 });
 
-//Add Route
-app.get('/programs/add',function(req,res){
-     res.render('add_exercise',{
-         title:"Add Work out program"
-     });
- });
-
-
 let users = require('./routes/users');
 app.use('/users', users);
+
+let programs = require('./routes/programs');
+app.use('/programs', programs)
 
 //start server
 app.listen(3000, function(){
