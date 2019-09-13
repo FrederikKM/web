@@ -64,9 +64,7 @@ app.get('*', function(req, res, next){
 
    // Home route
 app.get('/', function(req, res){
-    res.render('index',{
-        title:"Work out programs",
-    });
+    res.render('login');
 });
 
 let users = require('./routes/users');

@@ -18,6 +18,25 @@ router.get('/add/exercise', ensureAuthenticated, function(req, res){
     });
   });
 
+  router.get('/myprograms', ensureAuthenticated, function(req, res){
+        ExerciseProgram.find({creator : req.user._id}, function(err, programs){
+            if(err){
+                console.log(err);
+            } else{
+                res.render('index', {
+                    programs : programs
+                });
+            }
+        });
+        /* let programs = ExerciseProgram.find({creator : req.user._id});
+        console.log(programs);
+        if(programs != null){
+            res.render('my_programs', {
+                programs : programs  
+            });
+        } */
+    });
+
   router.post('/add/program', function(req, res){
     // Get Errors
     const name = req.body.program_field;
