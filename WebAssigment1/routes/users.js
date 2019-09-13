@@ -11,27 +11,12 @@ router.get('/register', function(req, res){
   res.render('register');
 });
 
-
 // Register Proccess
 router.post('/register', function(req, res){
-  const { check, validationResult } = require('express-validator');
-  check('name', 'Name is required').notEmpty;
-  check('email', 'Email is required').notEmpty;
-  check('email', 'Email is not valid').isEmail();
-  check('username', 'Username is required').notEmpty;
-  check('password', 'Password is required').notEmpty;
-  check('password2', 'Passwords do not match').equals(req.body.password);
+  const username = req.body.username;
+  const password = req.body.password;
 
-  const errors = validationResult(req);
-
-  if(errors){
-    res.render('register', {
-      errors:errors
-    });
-  } else {
     let newUser = new User({
-      name:name,
-      email:email,
       username:username,
       password:password
     });
@@ -47,13 +32,12 @@ router.post('/register', function(req, res){
             console.log(err);
             return;
           } else {
-            req.flash('success','You are now registered and can log in');
+            //req.flash('success','You are now registered and can log in');
             res.redirect('/users/login');
           }
         });
       });
-    });
-  }
+    });   
 });
 
 // Login Form
