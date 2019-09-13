@@ -6,7 +6,8 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 
-mongoose.connect('mongodb://localhost/webAssigment1', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/webAssigment1', { useNewUrlParser: true,
+useUnifiedTopology: true });
 let db = mongoose.connection;
 
 // Check for DB connection
@@ -21,6 +22,14 @@ db.on('error', function(err){
 
 //Init app
 const app = express();
+
+//var api = express.Router();
+//api.use(validator())
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+
 
 //Bring in models
 let Exercise = require('./models/exercise');
