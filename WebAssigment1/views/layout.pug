@@ -18,16 +18,16 @@ html
                                 a.dropdown-item(href='/programs/add/program') Program
                                 a.dropdown-item(href='/programs/add/exercise') Exercise
                         li
-                            a(href='/programs/myprograms', style='margin-left: 10px') | My Programs
+                            a.nav-link(href='/programs/myprograms', style='margin-left: 10px') My Programs
                 ul.nav.navbar-nav.navbar-right
                     if user
                         li 
-                            a(href='/users/logout', style='margin-left: 10px') Logout
+                            a.nav-link(href='/users/logout', style='margin-left: 10px') Logout
                     else
                         li
-                            a(href='/users/register') Register
+                            a.nav-link(href='/users/register') Register
                         li
-                            a(href='/users/login', style='margin-left: 10px') Login
+                            a.nav-link(href='/users/login', style='margin-left: 10px') Login
         .container
             block content
             br
