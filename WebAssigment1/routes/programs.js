@@ -50,7 +50,7 @@ router.get('/add/exercise', ensureAuthenticated, function(req, res){
           console.log(err);
           return;
         } else {
-          res.redirect('/');
+          res.redirect('/programs/myprograms');
         }
       });
     });
