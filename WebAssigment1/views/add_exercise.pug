@@ -2,19 +2,25 @@ extends layout
 
 block content
     h1 #{title}
-    form(method='POST', action='/programs/add/exercise')
+    form(method='POST', action='/programs/add/newexercise')
         #form-group
             label Exercise:
-            input.form-control(name='Exercise', type='text' placeholder='Exercise name')
+            input.form-control(name='Exercise', type='text' placeholder='Exercise name', required = '')
         #form-group
             label Description:
-            input.form-control(name='Description', type='text' placeholder='Description of the exercise')
+            input.form-control(name='Description', type='text' placeholder='Description of the exercise', required = '')
         #form-group
             label Set:
-            input.form-control(name='Set', type='text' placeholder='Number of sets')
+            input.form-control(name='Set', type='text' placeholder='Number of sets', required = '')
         #form-group
             label Reps:
-            input.form-control(name='Reps/Time', type='text' placeholder='Enter time or reps')
+            input.form-control(name='Reps', type='text' placeholder='Enter time or reps', required = '')
+        #form-group
+        label Program:
+        select(name="program" id="" placeholder = "Program")
+            each program, i in programs 
+                option(value=program._id) #{program.name}
+        #form-group
         input.btn.btn-primary(type='submit', value='Submit', style='margin-top: 10px')
 
             

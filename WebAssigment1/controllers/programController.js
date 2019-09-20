@@ -1,13 +1,24 @@
 let {ExerciseProgram} = require('../models/exerciseProgram');
+let {Exercise} = require('../models/exerciseProgram');
 // User Model
 let User = require('../models/user');
 
 
 // Add Route
 exports.addExercise =  function(req, res){
+ExerciseProgram.find({creator : req.user._id}, function(err, programs){
+  if(err){
+      console.log(err);
+  } else{
+    console.log(programs);
     res.render('add_exercise', {
-      title:'Add Exercise to program'
-    })};
+      title:'Add Exercise to program', 
+      programs : programs
+    });
+  }
+});
+};
+   
 
 exports.addProgram = function(req, res){
         res.render('add_program', {
@@ -25,13 +36,6 @@ exports.getProgramsFromDb =  function(req, res){
             });
         }
     });
-    /* let programs = ExerciseProgram.find({creator : req.user._id});
-    console.log(programs);
-    if(programs != null){
-        res.render('my_programs', {
-            programs : programs  
-        });
-    } */
 };
 
 exports.addNewProgram =  function(req, res){
@@ -51,5 +55,25 @@ exports.addNewProgram =  function(req, res){
         }
       });
     };
+
+exports.addNewExercise = function(req, res){
+  let exercise = new Exercise();
+   exercise.name = req.body.Exercise;
+   exercise.description = req.body.Description;
+   exercise.set = req.body.Set;
+   exercise.reps = req.body.Reps;
+
+  ExerciseProgram.updateOne(
+    {"_id" : req.body.program},
+    {$push: {exercises : exercise}},
+  function(err){
+    if(err){
+      console.log(err)
+    } else{
+      res.redirect('/programs/myprograms');
+    }
+  })
+}
+
     
 

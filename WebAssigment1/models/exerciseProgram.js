@@ -31,9 +31,9 @@ let ExerciseProgramSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    exercises:{type: [exerciseSchema]}
+    exercises:  [exerciseSchema]
 });
 
 let program = mongoose.model('ExerciseProgram', ExerciseProgramSchema);
 let exercise = mongoose.model('Exercise', exerciseSchema);
-module.exports = { ExerciseProgram: program, Exercise : exercise }
+module.exports = {ExerciseProgram: program, Exercise : exercise }

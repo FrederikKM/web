@@ -10,6 +10,8 @@ router.get('/add/program',ensureAuthenticated ,programController.addProgram);
 
 router.get('/myprograms',ensureAuthenticated ,programController.getProgramsFromDb);
 
+router.post('/add/newexercise', ensureAuthenticated, programController.addNewExercise);
+
 router.post('/add/program',  ensureAuthenticated ,programController.addNewProgram);
 
 
