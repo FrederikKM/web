@@ -1,10 +1,6 @@
 let {ExerciseProgram} = require('../models/exerciseProgram');
 let {Exercise} = require('../models/exerciseProgram');
-// User Model
-let User = require('../models/user');
 
-
-// Add Route
 exports.addExercise =  function(req, res){
 ExerciseProgram.find({creator : req.user._id}, function(err, programs){
   if(err){
@@ -18,13 +14,25 @@ ExerciseProgram.find({creator : req.user._id}, function(err, programs){
   }
 });
 };
-   
+
+ exports.getProgramDetails = function(req, res){
+  ExerciseProgram.findOne({_id : req.params.id}, function(err, program){
+    if(err){
+        console.log(err);
+    } else{
+      console.log(program);
+        res.render('program_detail', {
+          program : program
+        });
+    }
+}); 
+}
+
 
 exports.addProgram = function(req, res){
         res.render('add_program', {
           title:'Create new program'
         })};
- 
 
 exports.getProgramsFromDb =  function(req, res){
     ExerciseProgram.find({creator : req.user._id}, function(err, programs){
@@ -38,7 +46,7 @@ exports.getProgramsFromDb =  function(req, res){
     });
 };
 
-exports.addNewProgram =  function(req, res){
+exports.createNewProgram =  function(req, res){
     // Get Errors
     const name = req.body.program_field;
 
@@ -56,7 +64,7 @@ exports.addNewProgram =  function(req, res){
       });
     };
 
-exports.addNewExercise = function(req, res){
+exports.createNewExercise = function(req, res){
   let exercise = new Exercise();
    exercise.name = req.body.Exercise;
    exercise.description = req.body.Description;
@@ -75,5 +83,4 @@ exports.addNewExercise = function(req, res){
   })
 }
 
-    
 

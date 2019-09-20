@@ -2,18 +2,12 @@ const express = require('express');
 const router = express.Router();
 var programController = require('../controllers/programController');
 
-
-//let {ExerciseProgram} = require('../models/exerciseProgram');
-router.get('/add/exercise',ensureAuthenticated,programController.addExercise);
-
-router.get('/add/program',ensureAuthenticated ,programController.addProgram);
-
-router.get('/myprograms',ensureAuthenticated ,programController.getProgramsFromDb);
-
-router.post('/add/newexercise', ensureAuthenticated, programController.addNewExercise);
-
-router.post('/add/program',  ensureAuthenticated ,programController.addNewProgram);
-
+router.get('/add/exercise',ensureAuthenticated, programController.addExercise);
+router.get('/add/program',ensureAuthenticated, programController.addProgram);
+router.get('/myprograms',ensureAuthenticated, programController.getProgramsFromDb);
+router.post('/add/exercise', ensureAuthenticated, programController.createNewExercise);
+router.post('/add/program', ensureAuthenticated, programController.createNewProgram);
+router.get('/:id', ensureAuthenticated, programController.getProgramDetails);
 
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
