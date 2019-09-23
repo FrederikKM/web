@@ -8,7 +8,7 @@ const config = require('./config/database');
 const passport = require('passport');
 require('dotenv').config()
 
-mongoose.connect(process.env.MONGODB_URI || config.database);
+mongoose.connect('mongodb://heroku_tg8559nf:t5jo6va7sus9e72i48ks160lle@ds151070.mlab.com:51070/heroku_tg8559nf', {useNewUrlParser: true,  useUnifiedTopology: true});
 let db = mongoose.connection;
 
 // Check for DB connection
