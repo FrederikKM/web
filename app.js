@@ -1,3 +1,4 @@
+//Heroku URL: https://group11.herokuapp.com/
 const express = require("express");
 const path = require('path');
 const mongoose = require('mongoose');
@@ -5,8 +6,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const config = require('./config/database');
 const passport = require('passport');
+require('dotenv').config()
 
-mongoose.connect(config.database);
+mongoose.connect(process.env.MONGODB_URI || config.database);
 let db = mongoose.connection;
 
 // Check for DB connection
