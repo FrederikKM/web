@@ -77,6 +77,6 @@ app.use('/programs', programs)
 
 //start server
 app.listen(process.env.PORT || 3000, function(){
-    console.log('Server started on port: ' + config.port);
+    console.log('Server started on port: ' + process.env.PORT || 3000);
 });
 
