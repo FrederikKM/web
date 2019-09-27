@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 My Programs
+  form(method='GET', action=' )
+        #form-group
+            ul.list-group
+                each program, i in programs
+                    li.list-group-item
+                        a(href="/program/"+program._id)= program.name
